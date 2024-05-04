@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
+import { USER_AVATAR } from "../utils/constant";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Header = () => {
   useEffect(() => {
     //we are checking auth everytime the page loads
     //this function checks for auth , and redirects accordingly. no need to write separate navigation after this.
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const {uid, email, displayName, photoURL} = user;
         //i have put this user inside my store as user sign in or sign up.
@@ -39,6 +40,9 @@ const Header = () => {
         navigate("/");
       }
     });
+
+    //Unsubscribes when component unmounts
+    return () => unsubscribe(); //onAuthStateChange returns this fun 
   },[]);
 
   return (
@@ -49,7 +53,7 @@ const Header = () => {
         <img
           alt="userIcon"
           className="w-12 h-12 m-3"
-          src="https://occ-0-2152-3647.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
+          src={ USER_AVATAR }
         />
         <button
           className="text-white bg-red-500 w-30 h-7 mt-6 px-2"

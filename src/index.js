@@ -5,8 +5,8 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+ // <React.StrictMode>
     <App />
-  </React.StrictMode>
+ // </React.StrictMode> //2 api calls are there because of this, just uncomment this if deploying on prod.
 );
 
