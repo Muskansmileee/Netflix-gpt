@@ -29,3 +29,11 @@
    - Netflix GPT 
      - search bar 
      - movie sugestions
+
+
+
+     //https://console.firebase.google.com/project/netflixgpt-dd2e5/authentication/users
+
+     //https://firebase.google.com/docs/auth/web/password-auth
+
+     //http://localhost:3000/browse
