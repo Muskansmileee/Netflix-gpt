@@ -10,7 +10,7 @@ const MainContainer = () => {
   if(movies ===  null) return;
   const mainMovie = movies[0];
   
-  const { original_title, overview } = mainMovie; 
+  const { original_title, overview, id } = mainMovie; 
 
 
   return (
@@ -19,7 +19,7 @@ const MainContainer = () => {
     // VideoTitle should overlap videoBackground
     <div>
       <VideoTitle title={original_title} overview={overview}/>
-      <VideoBackground mainMovie = {mainMovie}/>  
+      <VideoBackground movieId = {id}/>  
     </div>
   )
 }
