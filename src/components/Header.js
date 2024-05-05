@@ -4,10 +4,11 @@ import { auth } from "../utils/firebaseConfig";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { USER_AVATAR } from "../utils/constant";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -45,11 +46,24 @@ const Header = () => {
     return () => unsubscribe(); //onAuthStateChange returns this fun 
   },[]);
 
+  const handelGptSearchClick = () => {
+    //get value of GptSearchActive from store
+    dispatch(toggleGptSearchView());
+  }
+
+  const showGptSearch = useSelector(store => store.gpt?.showGptSearch);
+
   return (
     <div className="absolute w-screen z-50 px-12 py-2 bg-gradient-to-b from-black flex justify-between">
       <img src={logo} alt="Netflix-logo" className="w-40" />
 
       <div className="flex">
+        <button className="text-white border border-white w-30 h-7 mt-6 px-2 bg-slate-600 rounded-md bg-opacity-60"
+         onClick={handelGptSearchClick}
+        >
+          { showGptSearch ? "GPT Search" : "HomePage" }
+          
+        </button>
         <img
           alt="userIcon"
           className="w-12 h-12 m-3"
