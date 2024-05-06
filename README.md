@@ -31,9 +31,15 @@
      - movie sugestions
 
 
-
-     //https://console.firebase.google.com/project/netflixgpt-dd2e5/authentication/users
-
+User database-> project -> project name-> authentication -> users
+     //https://console.firebase.google.com/
+Documentation firebase
      //https://firebase.google.com/docs/auth/web/password-auth
 
      //http://localhost:3000/browse
+
+TMDB link for movies:
+https://console.firebase.google.com/project/netflixgpt-dd2e5/authentication/users
+
+TMDB link for searching movies:
+https://developer.themoviedb.org/reference/search-movie
