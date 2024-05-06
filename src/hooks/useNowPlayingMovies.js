@@ -1,11 +1,15 @@
 import { useEffect } from "react";
 import { API_OPTIONS } from "../utils/constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNowPlayingMovies } from "../utils/movieSlice";
 
 const useNowPlayingMovies = () => {
- const dispatch = useDispatch();
- //fetch data from TMDB Api and update store
+  const nowPlayingMovies = useSelector(
+    (store) => store.movies.nowPlayingMovies
+  );
+
+  const dispatch = useDispatch();
+  //fetch data from TMDB Api and update store
   const getNowPlayingMovies = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
@@ -17,8 +21,10 @@ const useNowPlayingMovies = () => {
   };
 
   useEffect(() => {
-    getNowPlayingMovies();
-  },[])
-}
+    if (!nowPlayingMovies) {
+      getNowPlayingMovies(); //Memoization: if now playing movies is not there, then fetch
+    }
+  }, []);
+};
 
 export default useNowPlayingMovies;
