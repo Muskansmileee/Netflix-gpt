@@ -3,8 +3,6 @@ import MovieCard from "./MovieCard";
 import '../../src/custom.css';
 
 const MovieList = ({ title, movies }) => {
-  console.log(movies);
-
   return (
     <div className="pl-12">
       <h1 className="px-1 py-4 text-lg font-semibold text-white">{title}</h1>
