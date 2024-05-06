@@ -1,8 +1,13 @@
 import React from "react";
 import GptSearchBar from "./GptSearchBar";
 import GptMovieSuggestions from "./GptMovieSuggestions";
+import { useSelector } from "react-redux";
 
 const GptSearch = () => {
+  const gptSuggestedMovies = useSelector(
+    (store) => store.gpt?.suggestedGptMovies
+  );
+
   return (
     <div>
       <div className="absolute -z-10">
@@ -12,7 +17,15 @@ const GptSearch = () => {
         />
       </div>
       <GptSearchBar />
-      <GptMovieSuggestions />
+      <div className="flex justify-center">
+        {gptSuggestedMovies &&
+          gptSuggestedMovies.map((movie) => (
+            <GptMovieSuggestions
+              title={movie?.[0].title}
+              posterPath={movie?.[0].poster_path}
+            />
+          ))}
+      </div>
 
       {/*
             Gpt Search Bar

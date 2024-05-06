@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { USER_AVATAR } from "../utils/constant";
-import { toggleGptSearchView } from "../utils/gptSlice";
+import { clearSuggestedSearchResult, toggleGptSearchView } from "../utils/gptSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constant";
 import { addUserLanguage } from "../utils/configSlice";
 
@@ -50,7 +50,6 @@ const Header = () => {
         navigate("/");
       }
     });
-    
     //Unsubscribes when component unmounts
     return () => unsubscribe(); //onAuthStateChange returns this fun
   }, []);
@@ -58,6 +57,8 @@ const Header = () => {
   const handelGptSearchClick = () => {
     //get value of GptSearchActive from store
     dispatch(toggleGptSearchView());
+    dispatch(clearSuggestedSearchResult()); //clear the suggestions on gpt page
+    dispatch(addUserLanguage("en")); // to have default english language always.
   };
 
   const handelLanguageChangeClick = (e) => {

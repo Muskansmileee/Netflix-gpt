@@ -10,6 +10,10 @@ export const API_OPTIONS = {
   },
 };
 
+export const IMG_POSTER = "https://image.tmdb.org/t/p/w500/";
+
+export const OPENAI_KEY = "open api key "; //remove it , dont push
+
 export const SUPPORTED_LANGUAGES = [
   { identifier: "en", name: "English" },
   { identifier: "hindi", name: "Hindi" },
